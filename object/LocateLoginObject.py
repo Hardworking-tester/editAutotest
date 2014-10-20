@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from Data import ReadExcel
 from Action import Browser
 from Data import get_number_by_data
-import time
+import time,OperateElement
 class LocateLoginObject():
 
     def getLocateObject(self,browser,username,password,alertmessage):
@@ -36,8 +36,10 @@ class LocateLoginObject():
 
         old_how=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+1)
         what=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+2)
-
+        #在这里增加一个字典是因为如果直接把By.ID写在excel里的话，取出来不能用
         locate_method_dict={'id':By.ID,'css':By.CSS_SELECTOR,'xpath':By.XPATH,'linktext':By.LINK_TEXT}
+
+        #下述代码判断定位方式
         if old_how=='linktext':
             new_how=locate_method_dict["linktext"]
         elif old_how=='id':
@@ -47,35 +49,13 @@ class LocateLoginObject():
         elif old_how=='xpath':
             new_how=locate_method_dict["xpath"]
         print obj_name,new_how,what
+        #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
         self.locateElement(br,new_how,what,obj_name,username,password,alertmessage)
 
     def locateElement(self,browser,how,what,obj_name,username,password,alertmessage):
         br=browser
         object_name=obj_name
         located_element=br.find_element(by=how,value=what)
-        self.getOperateMethod(br,object_name,located_element,username,password,alertmessage)
+        #调用操作元素的方法
+        OperateElement.OperateElement().operateElement(br,object_name,located_element,username,password,alertmessage)
 
-
-
-    def getOperateMethod(self,br,object_name,located_element,username,password,alertmessage):
-        br=br
-        object_name=object_name
-        located_element=located_element
-
-        excel=ReadExcel.ReadExcel()
-        operate_method_excelpath="F:\\pytest\\editAutotest\\Data\\login_data.xls"
-        operate_method_sheet=excel.getTableBySheetName(operate_method_excelpath,"operate_method")
-        row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber("operate_method",object_name)
-        operate_method=operate_method_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+1)
-
-        if operate_method=='click':
-            located_element.click()
-            time.sleep(5)
-        elif operate_method=='sendkey' and object_name=='username':
-            located_element.clear()
-            located_element.send_keys(username)
-            time.sleep(5)
-        elif operate_method=='sendkey' and object_name=='password':
-            located_element.clear()
-            located_element.send_keys(password)
-            time.sleep(5)

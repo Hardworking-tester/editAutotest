@@ -12,6 +12,7 @@ class Login(unittest.TestCase):
         self.browser=Browser.Browser().init_browser()
 
     def getUsernameAndPasswordByTestcaseid(self,testcaseid):
+        """根据传递过来得testcaseid去拿到用户名、密码、弹出框内容"""
         excel=ReadExcel.ReadExcel()
         testcase_excelpath="F:\\pytest\\editAutotest\\Data\\login_data.xls"
         testcase_sheet=excel.getTableBySheetName(testcase_excelpath,"username_password_data")
@@ -71,7 +72,7 @@ class Login(unittest.TestCase):
 
 
     def dealAlert(self,alertmessage):
-
+        """处理弹出框"""
         self.assertEqual(alertmessage,self.browser.switch_to_alert().text)
 
         try:
