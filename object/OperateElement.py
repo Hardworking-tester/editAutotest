@@ -6,6 +6,7 @@ class OperateElement():
 
 
     def operateElement(self,br,object_name,located_element,username,password,alertmessage):
+        """该函数作用就是去操作已经定位到的元素，操作方式为sendkey或者click """
         br=br
         object_name=object_name
         located_element=located_element

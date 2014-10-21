@@ -73,8 +73,9 @@ class Login(unittest.TestCase):
 
     def dealAlert(self,alertmessage):
         """处理弹出框"""
+        #为弹出框增加断言
         self.assertEqual(alertmessage,self.browser.switch_to_alert().text)
-
+        #捕获弹出框异常并打印到测试报告中
         try:
             self.browser.switch_to_alert().accept()
         except:

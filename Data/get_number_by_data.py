@@ -2,6 +2,7 @@
 import xlrd
 class GetRowAndColNumber():
     def getRowAndColNumber(self,sheet_name,key):
+        """该函数的作用：通过参数sheet_name和key，去返回一个该key所在行号和列号的列表"""
         data=xlrd.open_workbook("F:\\pytest\\editAutotest\\Data\\login_data.xls")
         sheet=data.sheet_by_name(sheet_name)
         rows=sheet.nrows
