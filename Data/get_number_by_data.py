@@ -7,7 +7,6 @@ class GetRowAndColNumber():
         sheet=data.sheet_by_name(sheet_name)
         rows=sheet.nrows
         cols=sheet.ncols
-        # key='id'
         row_col_list=[]
         for row_number in range(rows):
             for col_number in range(cols):

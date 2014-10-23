@@ -6,7 +6,7 @@ from Data import ReadExcel,get_number_by_data
 from Action import Browser
 import time,OperateElement
 class LocateLoginObject():
-
+    #该类主要是去定位登录功能中所用到的元素
     def getLocateObject(self,browser,username,password,alertmessage):
         """循环需要定位的元素，拿到一个元素之后去调用getLocatMethodAndData方法，取得元素的定位方式以及定位所需数据"""
         browser=browser
@@ -28,7 +28,6 @@ class LocateLoginObject():
         obj_name=objname
         br=browser
         row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber("objname_locatemethod_locatedata",obj_name)
-        print row_col_number_list
         excel=ReadExcel.ReadExcel()
         locate_method_data_excelpath="F:\\pytest\\editAutotest\\Data\\login_data.xls"
         locate_method_data_sheet=excel.getTableBySheetName(locate_method_data_excelpath,"objname_locatemethod_locatedata")
