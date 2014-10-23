@@ -17,15 +17,20 @@ class OperateElement():
         row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber("operate_method",object_name)
         operate_method=operate_method_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+1)
 
+        print object_name
         if operate_method=='click':
             located_element.click()
             time.sleep(5)
         elif operate_method=='sendkey' and object_name=='username':
             located_element.clear()
             located_element.send_keys(username)
+
+            print username
             time.sleep(5)
         elif operate_method=='sendkey' and object_name=='password':
             located_element.clear()
             located_element.send_keys(password)
+
+            print password
             time.sleep(5)
 

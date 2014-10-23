@@ -4,6 +4,7 @@ from Data import ReadExcel
 from Data import get_number_by_data
 from object import LocateLoginObject
 import Browser,unittest
+import time
 from resultlog import ResultLog
 class Login(unittest.TestCase):
 
@@ -29,56 +30,71 @@ class Login(unittest.TestCase):
 
 
     def testNullUsername(self):
-        u"""case_0002-用户名为空的测试用例"""
+        u"""用户名为空的测试用例"""
         testcaseid='case_0002'
+        print testcaseid
         data_list=self.getUsernameAndPasswordByTestcaseid(testcaseid)
         username=data_list[0]
         password=data_list[1]
         alertmessage=data_list[2]
         LocateLoginObject.LocateLoginObject().getLocateObject(self.browser,username,password,alertmessage)
-
         self.dealAlert(alertmessage)
-
+        self.browser.get_screenshot_as_file("F:\\testresult\\image_NULLusername.png")
+        print("image_NULLusername.png")
 
     def testNotExistUsername(self):
-        u"""case_0001-用户名不存在的测试用例"""
+        u"""用户名不存在的测试用例"""
         testcaseid='case_0001'
+        print testcaseid
         data_list=self.getUsernameAndPasswordByTestcaseid(testcaseid)
         username=data_list[0]
         password=data_list[1]
         alertmessage=data_list[2]
         LocateLoginObject.LocateLoginObject().getLocateObject(self.browser,username,password,alertmessage)
         self.dealAlert(alertmessage)
+        self.browser.get_screenshot_as_file("F:\\testresult\\image_NOTExistUser.png")
+        print("image_NOTExistUser.png")
 
     def testErrorPassword(self):
-        u"""case_0003-密码错误的测试用例"""
+        u"""密码错误的测试用例"""
         testcaseid='case_0003'
+        print testcaseid
         data_list=self.getUsernameAndPasswordByTestcaseid(testcaseid)
         username=data_list[0]
         password=data_list[1]
         alertmessage=data_list[2]
         LocateLoginObject.LocateLoginObject().getLocateObject(self.browser,username,password,alertmessage)
+
         self.dealAlert(alertmessage)
+        self.browser.get_screenshot_as_file("F:\\testresult\\image_ERRORPassword.png")
+        print("image_ERRORPassword.png")
 
     def testSuccessLogin(self):
-        u"""case_0004-登录成功的测试用例"""
+        u"""登录成功的测试用例"""
         testcaseid='case_0004'
+        print testcaseid
         data_list=self.getUsernameAndPasswordByTestcaseid(testcaseid)
         username=data_list[0]
         password=data_list[1]
         alertmessage=data_list[2]
         LocateLoginObject.LocateLoginObject().getLocateObject(self.browser,username,password,alertmessage)
+
         self.dealAlert(alertmessage)
+        self.browser.get_screenshot_as_file("F:\\testresult\\image_SUCCESSLogin.png")
+        print("image_SUCCESSLogin.png ")
+
 
 
     def dealAlert(self,alertmessage):
         """处理弹出框"""
         #为弹出框增加断言
-        self.assertEqual(alertmessage,self.browser.switch_to_alert().text)
+        print (u"弹出框内容为：%s" %self.browser.switch_to_alert().text)
+        print (u"预期弹出框内容为：%s" %alertmessage)
+        self.assertEqual(alertmessage,self.browser.switch_to_alert().text,msg='not equal')
         #捕获弹出框异常并打印到测试报告中
         try:
             self.browser.switch_to_alert().accept()
         except:
-            print("no alert")
+            print(u"没有找到弹出框")
     def tearDown(self):
         self.browser.close()

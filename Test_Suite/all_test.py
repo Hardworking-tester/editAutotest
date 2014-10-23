@@ -15,7 +15,7 @@ def createsuite():
     return testunit
 alltestcases=createsuite()
 now=time.strftime("%Y-%m-%d-%H_%M_%S",time.localtime(time.time()))
-filepath="F:\\testresult\\"+now+"result1.html"
+filepath="F:\\testresult\\"+now+"ResultReport.html"
 fp=file(filepath,'wb')
 runner=HTMLTestRunner.HTMLTestRunner(stream=fp,title=u'测试报告',description=u'用例执行情况')
 runner.run(alltestcases)
