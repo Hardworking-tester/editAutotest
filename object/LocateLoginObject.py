@@ -2,9 +2,8 @@
 import os
 import sys,xlrd
 from selenium.webdriver.common.by import By
-from Data import ReadExcel
+from Data import ReadExcel,get_number_by_data
 from Action import Browser
-from Data import get_number_by_data
 import time,OperateElement
 class LocateLoginObject():
 
