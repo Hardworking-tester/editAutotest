@@ -4,7 +4,7 @@ import sys,xlrd
 from selenium.webdriver.common.by import By
 from Data import ReadExcel,get_number_by_data
 from Action import Browser
-import time,OperateElement
+import time,OperateLoginElement
 class LocateLoginObject():
     #该类主要是去定位登录功能中所用到的元素
     def getLocateObject(self,browser,username,password,alertmessage):
@@ -55,5 +55,5 @@ class LocateLoginObject():
         object_name=obj_name
         located_element=br.find_element(by=how,value=what)
         #调用操作元素的方法
-        OperateElement.OperateElement().operateElement(br,object_name,located_element,username,password,alertmessage)
+        OperateLoginElement.OperateElement().operateElement(br,object_name,located_element,username,password,alertmessage)
 
