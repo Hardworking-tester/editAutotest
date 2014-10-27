@@ -27,7 +27,8 @@ class LocateLoginObject():
         """根据需要定位的元素的名称得到需要定位的元素的定位方式以及定位数据"""
         obj_name=objname
         br=browser
-        row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber("objname_locatemethod_locatedata",obj_name)
+        excel_path="F:\\pytest\\editAutotest\\Data\\login_data.xls"
+        row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber(excel_path,"objname_locatemethod_locatedata",obj_name)
         excel=ReadExcel.ReadExcel()
         locate_method_data_excelpath="F:\\pytest\\editAutotest\\Data\\login_data.xls"
         locate_method_data_sheet=excel.getTableBySheetName(locate_method_data_excelpath,"objname_locatemethod_locatedata")

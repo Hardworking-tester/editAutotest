@@ -17,7 +17,7 @@ class Login(unittest.TestCase):
         excel=ReadExcel.ReadExcel()
         testcase_excelpath="F:\\pytest\\editAutotest\\Data\\login_data.xls"
         testcase_sheet=excel.getTableBySheetName(testcase_excelpath,"username_password_data")
-        row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber("username_password_data",testcaseid)
+        row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber(testcase_excelpath,"username_password_data",testcaseid)
         data_list=[]
         user_name=testcase_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+2)
         pass_word=testcase_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+3)

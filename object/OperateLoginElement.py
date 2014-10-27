@@ -14,7 +14,7 @@ class OperateElement():
         excel=ReadExcel.ReadExcel()
         operate_method_excelpath="F:\\pytest\\editAutotest\\Data\\login_data.xls"
         operate_method_sheet=excel.getTableBySheetName(operate_method_excelpath,"operate_method")
-        row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber("operate_method",object_name)
+        row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber(operate_method_excelpath,"operate_method",object_name)
         operate_method=operate_method_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+1)
 
         print object_name
