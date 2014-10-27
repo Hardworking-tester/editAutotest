@@ -7,7 +7,7 @@ testlistdir="F:\\pytest\\editAutotest\\Action"
 def createsuite():
     testunit=unittest.TestSuite()
     discover=unittest.defaultTestLoader.discover(
-        testlistdir,pattern='success*.py',
+        testlistdir,pattern='test*.py',
         top_level_dir=None)
     for test_suite in discover:
         for test_case in test_suite:
