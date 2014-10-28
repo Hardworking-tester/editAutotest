@@ -12,7 +12,6 @@ class AddProduct():
         testcase_excelpath="F:\\pytest\\editAutotest\\Data\\addProduct_data.xls"
         testcase_sheet=excel.getTableBySheetName(testcase_excelpath,"addproduct_data")
         row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber(testcase_excelpath,"addproduct_data",testcaseid)
-        print row_col_number_list
         data_list=[]
         # product_title:产品标题,key_word:关键词,standard:规格,producter:生产厂家,quality_date:保质期,storage_conditions:存储条件
         # product_allow_id:生产许可证号,product_standard_id:产品标准号,shop_price:批发价,retail_price:零售价
@@ -34,7 +33,6 @@ class AddProduct():
         """根据传递过来得testcaseid去拿到用户名、密码、弹出框内容"""
         testcaseid='case_0005'
         data_list=self.getAddProductDataByTestcaseid(testcaseid)
-        print data_list
         LocateAddProductObject.LocateLoginObject().getLocateObject(data_list)
 
 

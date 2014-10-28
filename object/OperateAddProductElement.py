@@ -17,7 +17,7 @@ class OperateElement():
         row_col_number_list=get_number_by_data.GetRowAndColNumber().getRowAndColNumber(operate_method_excelpath,"operate_method",object_name)
         operate_method=operate_method_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+1)
 
-        # print object_name
+        print object_name
         if operate_method=='click':
             located_element.click()
             time.sleep(4)
@@ -27,3 +27,11 @@ class OperateElement():
         elif operate_method=='sendkey' and object_name==u'关键词':
             located_element.clear()
             located_element.send_keys(data_list[1])
+        elif operate_method=='sendkey' and object_name==u'产品规格':
+            located_element.clear()
+            located_element.send_keys(data_list[2])
+            # located_element.send_keys('jhjhkj')
+        elif operate_method=='sendkey' and object_name==u'生产厂家':
+            located_element.clear()
+            located_element.send_keys(data_list[3])
+            # located_element.send_keys('fghfdgfdg')

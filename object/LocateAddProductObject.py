@@ -61,7 +61,6 @@ class LocateLoginObject():
             elif old_how=='xpath':
                 new_how=locate_method_dict["xpath"]
                 #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
-                print new_how,object_name
                 self.locateElement(br,new_how,what,obj_name,data_list)
 
 
@@ -172,7 +171,6 @@ class LocateLoginObject():
     def locateElements(self,browser,how,what,index,obj_name,data_list):
         br=browser
         object_name=obj_name
-        print index
         located_element=br.find_elements(by=how,value=what)[index]
         #调用操作元素的方法
         OperateAddProductElement.OperateElement().opermateAddProductElement(br,object_name,located_element,data_list)
