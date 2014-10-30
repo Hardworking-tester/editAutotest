@@ -9,7 +9,6 @@ class OperateElement():
         br=br
         object_name=object_name
         located_element=located_element
-        # print br,object_name,located_element
 
         excel=ReadExcel.ReadExcel()
         operate_method_excelpath="F:\\pytest\\editAutotest\\Data\\addProduct_data.xls"
@@ -78,4 +77,5 @@ class OperateElement():
         elif operate_method=='sendkey' and object_name==u'产品简介':
             located_element.clear()
             located_element.send_keys(data_list[14])
+
 

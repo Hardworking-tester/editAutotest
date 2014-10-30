@@ -36,8 +36,8 @@ class LocateLoginObject():
         locate_method_data_sheet=excel.getTableBySheetName(locate_method_data_excelpath,"objname_locatemethod_locatedata")
         old_how=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+1)#获得excel中存储的定位方式
         what=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+2)#获得excel中存储的定位数据
-        first_oneOrAll=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+3)#取得标记位以供判断是需要多次定位的元素在第一次定位时是定位一个元素还是定位多个元素
-        second_oneOrAll=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+8)#取得标记位以供判断是需要多次定位的元素在第二次定位时是定位一个元素还是定位多个元素
+        first_oneOrMore=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+3)#取得标记位以供判断是需要多次定位的元素在第一次定位时是定位一个元素还是定位多个元素
+        second_oneOrMore=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+8)#取得标记位以供判断是需要多次定位的元素在第二次定位时是定位一个元素还是定位多个元素
         second_locate_flag=locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+5)#取得标记位以供判断元素是否需要二次定位
         #在这里增加一个字典是因为如果直接把By.ID写在excel里的话，取出来不能用
         locate_method_dict={'id':By.ID,'css':By.CSS_SELECTOR,'xpath':By.XPATH,'linktext':By.LINK_TEXT}
@@ -53,9 +53,9 @@ class LocateLoginObject():
                 self.locateElement(br,new_how,what,obj_name,data_list)
             elif old_how=='css':
                 new_how=locate_method_dict["css"]
-                if first_oneOrAll=='element':
+                if first_oneOrMore=='element':
                     self.locateElement(br,new_how,what,obj_name,data_list)
-                elif first_oneOrAll=='elements':
+                elif first_oneOrMore=='elements':
                     elements_index=int(locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+4))
                     self.locateElements(br,new_how,what,elements_index,obj_name,data_list)
             elif old_how=='xpath':
@@ -76,22 +76,22 @@ class LocateLoginObject():
             if old_how=='linktext':
                 new_how=locate_method_dict["linktext"]
                 #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
-                self.locateElementFirst(br,new_how,what,obj_name,data_list,second_how,second_what,first_oneOrAll,locate_method_data_sheet,row_col_number_list)
+                self.locateElementFirst(br,new_how,what,obj_name,data_list,second_how,second_what,first_oneOrMore,locate_method_data_sheet,row_col_number_list)
             elif old_how=='id':
                 new_how=locate_method_dict['id']
                 #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
-                self.locateElementFirst(br,new_how,what,obj_name,data_list,second_how,second_what,first_oneOrAll,locate_method_data_sheet,row_col_number_list)
+                self.locateElementFirst(br,new_how,what,obj_name,data_list,second_how,second_what,first_oneOrMore,locate_method_data_sheet,row_col_number_list)
             elif old_how=='css':
                 new_how=locate_method_dict["css"]
-                if first_oneOrAll=='element':
-                    self.locateElementFirst(br,new_how,what,obj_name,data_list,second_how,second_what,first_oneOrAll,locate_method_data_sheet,row_col_number_list)
-                elif first_oneOrAll=='elements':
+                if first_oneOrMore=='element':
+                    self.locateElementFirst(br,new_how,what,obj_name,data_list,second_how,second_what,first_oneOrMore,locate_method_data_sheet,row_col_number_list)
+                elif first_oneOrMore=='elements':
                     first_elements_index=int(locate_method_data_sheet.cell_value(row_col_number_list[0],row_col_number_list[1]+4))
-                    self.locateElmentsFirst(br,new_how,what,first_elements_index,obj_name,data_list,second_how,second_what,first_oneOrAll,second_oneOrAll,locate_method_data_sheet,row_col_number_list)
+                    self.locateElmentsFirst(br,new_how,what,first_elements_index,obj_name,data_list,second_how,second_what,first_oneOrMore,second_oneOrMore,locate_method_data_sheet,row_col_number_list)
             elif old_how=='xpath':
                 new_how=locate_method_dict["xpath"]
                 #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
-                self.locateElementFirst(br,new_how,what,obj_name,data_list,second_how,second_what,first_oneOrAll,locate_method_data_sheet,row_col_number_list)
+                self.locateElementFirst(br,new_how,what,obj_name,data_list,second_how,second_what,second_oneOrMore,locate_method_data_sheet,row_col_number_list)
 
     def locateElementFirst(self,browser,how,what,obj_name,data_list,second_how,second_what,oneOrAll,locate_method_data_sheet,row_col_number_list):
         #该方法作用：针对需要二次定位的元素,在此进行第一次定位
@@ -172,6 +172,7 @@ class LocateLoginObject():
         located_element=br.find_element(by=how,value=what)
         #调用操作元素的方法
         OperateAddProductElement.OperateElement().opermateAddProductElement(br,object_name,located_element,data_list)
+
 
 
     def locateElements(self,browser,how,what,index,obj_name,data_list):
