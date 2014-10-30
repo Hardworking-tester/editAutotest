@@ -17,10 +17,10 @@ class LocateLoginObject():
         object_sheet=excel.getTableBySheetName(object_excelpath,"objname_locatemethod_locatedata")
         object_sheet_rows=object_sheet.nrows
         object_name_list=[]#得到需要定位的元素的名称的列表
+
         for i in range(object_sheet_rows):#拿到登录功能中需要定位的对象名称列表
             object_name_list.append(object_sheet.cell(i,0).value)
         object_name_list.pop(0)#去掉对象名excel中的第一行的标签项名称
-        # print object_name_list
         #循环需要定位的元素，拿到一个元素之后去调用getLocatMethodAndData方法，取得元素的定位方式以及定位所需数据
         for object_name in object_name_list:
             self.getLocateMethodAndData(browser,object_name,data_list)
@@ -62,6 +62,11 @@ class LocateLoginObject():
                 new_how=locate_method_dict["xpath"]
                 #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
                 self.locateElement(br,new_how,what,obj_name,data_list)
+            elif old_how=='js':
+
+                #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
+                self.locateElementByJs(br,what,obj_name,data_list)
+
 
 
         #通过判断second_locate_flag的值，如果是Y的话就表示需要进行二次判断，那么需要两次定位才能定位到该元素
@@ -156,7 +161,8 @@ class LocateLoginObject():
         second_located_element=first_located_element.find_elements(by=second_new_how,value=second_what)[second_elements_index]
         OperateAddProductElement.OperateElement().opermateAddProductElement(br,object_name,second_located_element,data_list)
 
-
+    def locateElementByJs(self,br,js,obj_name,data_list):
+        br.execute_script(js)
 
 
     def locateElement(self,browser,how,what,obj_name,data_list):

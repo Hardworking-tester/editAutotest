@@ -30,8 +30,52 @@ class OperateElement():
         elif operate_method=='sendkey' and object_name==u'产品规格':
             located_element.clear()
             located_element.send_keys(data_list[2])
-            # located_element.send_keys('jhjhkj')
+
         elif operate_method=='sendkey' and object_name==u'生产厂家':
             located_element.clear()
             located_element.send_keys(data_list[3])
-            # located_element.send_keys('fghfdgfdg')
+
+        elif operate_method=='sendkey' and object_name==u'保质期':
+            located_element.clear()
+            located_element.send_keys(int(data_list[4]))
+
+        elif operate_method=='sendkey' and object_name==u'存储条件':
+            located_element.clear()
+            located_element.send_keys(data_list[5])
+
+        elif operate_method=='sendkey' and object_name==u'生产许可证号':
+            located_element.clear()
+            located_element.send_keys(data_list[6])
+
+        elif operate_method=='sendkey' and object_name==u'产品标准号':
+            located_element.clear()
+            located_element.send_keys(data_list[7])
+
+        elif operate_method=='sendkey' and object_name==u'批发价':
+            located_element.clear()
+            located_element.send_keys(int(data_list[8]))
+
+        elif operate_method=='sendkey' and object_name==u'零售价':
+            located_element.clear()
+            located_element.send_keys(int(data_list[9]))
+
+        elif operate_method=='sendkey' and object_name==u'供货量':
+            located_element.clear()
+            located_element.send_keys(int(data_list[10]))
+
+        elif operate_method=='sendkey' and object_name==u'最小起订量':
+            located_element.clear()
+            located_element.send_keys(int(data_list[11]))
+
+        elif operate_method=='sendkey' and object_name==u'发货期限':
+            located_element.clear()
+            located_element.send_keys(int(data_list[12]))
+
+        elif operate_method=='sendkey' and object_name==u'图片上传弹出框的浏览按钮':
+
+            located_element.send_keys(data_list[13])
+
+        elif operate_method=='sendkey' and object_name==u'产品简介':
+            located_element.clear()
+            located_element.send_keys(data_list[14])
+
