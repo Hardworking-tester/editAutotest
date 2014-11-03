@@ -8,10 +8,10 @@ import time,OperateAddProductElement
 from Action import PublicLogin
 class LocateLoginObject():
     #该类主要是去定位发布产品功能中所用到的元素
-    def getLocateObject(self,data_list):
+    def getLocateObject(self,browser,data_list):
         """循环需要定位的元素，拿到一个元素之后去调用getLocatMethodAndData方法，取得元素的定位方式以及定位所需数据"""
 
-        browser=PublicLogin.PublicLogin().publicLogin()
+        browser=browser
         excel=ReadExcel.ReadExcel()
         object_excelpath="F:\\pytest\\editAutotest\\Data\\addProduct_data.xls"
         object_sheet=excel.getTableBySheetName(object_excelpath,"objname_locatemethod_locatedata")
@@ -66,6 +66,10 @@ class LocateLoginObject():
 
                 #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
                 self.locateElementByJs(br,what,obj_name,data_list)
+
+            elif old_how=='switchwindow':
+                self.switchWindow(br,int(what),object_name,data_list)
+
 
 
 
@@ -164,6 +168,8 @@ class LocateLoginObject():
     def locateElementByJs(self,br,js,obj_name,data_list):
         br.execute_script(js)
 
+    def switchWindow(self,br,windowIndex,obj_name,data_list):
+        br.switch_to.window(br.window_handles[windowIndex])
 
     def locateElement(self,browser,how,what,obj_name,data_list):
         #该方法作用：只针对一次定位可以定位到的元素，定位之后操作
@@ -186,6 +192,3 @@ class LocateLoginObject():
 
 
 
-
-# pp=LocateLoginObject()
-# pp.getLocateObject()

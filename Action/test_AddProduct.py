@@ -1,10 +1,11 @@
 # encoding:utf-8
-import PublicLogin
+import PublicLogin,unittest
 from Data import get_number_by_data,ReadExcel
 from object import LocateAddProductObject
-class AddProduct():
+class AddProduct(unittest.TestCase):
 
-
+    def setUp(self):
+        self.browser=PublicLogin.PublicLogin().publicLogin()
 
     def getAddProductDataByTestcaseid(self,testcaseid):
         """根据传递过来得testcaseid去拿到发布产品所需要填写的内容"""
@@ -29,17 +30,17 @@ class AddProduct():
 
         return data_list
 
-    def addProduct(self):
-        """根据传递过来得testcaseid去拿到用户名、密码、弹出框内容"""
+    def testAddProduct(self):
+        u"""测试发布产品功能"""
         testcaseid='case_0005'
         data_list=self.getAddProductDataByTestcaseid(testcaseid)
-        LocateAddProductObject.LocateLoginObject().getLocateObject(data_list)
+        LocateAddProductObject.LocateLoginObject().getLocateObject(self.browser,data_list)
+        print testcaseid
+
+    def tearDown(self):
+        self.browser.close()
 
 
 
 
 
-
-
-pp=AddProduct()
-pp.addProduct()

@@ -17,8 +17,5 @@ class PublicLogin():
         time.sleep(2)
         br.switch_to.alert.accept()
         time.sleep(5)
-        br.find_element_by_css_selector('a.red').click()
-        time.sleep(4)
-        br.switch_to.window(br.window_handles[1])
-        time.sleep(4)
         return br
+
