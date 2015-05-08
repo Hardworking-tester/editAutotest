@@ -39,14 +39,16 @@ class LocateLoginObject():
         locate_method_dict={'id':By.ID,'css':By.CSS_SELECTOR,'xpath':By.XPATH,'linktext':By.LINK_TEXT}
 
         #下述代码判断定位方式
-        if old_how=='linktext':
-            new_how=locate_method_dict["linktext"]
-        elif old_how=='id':
-            new_how=locate_method_dict['id']
-        elif old_how=='css':
-            new_how=locate_method_dict["css"]
-        elif old_how=='xpath':
-            new_how=locate_method_dict["xpath"]
+
+        new_how=locate_method_dict[old_how]
+        # if old_how=='linktext':
+        #     new_how=locate_method_dict["linktext"]
+        # elif old_how=='id':
+        #     new_how=locate_method_dict['id']
+        # elif old_how=='css':
+        #     new_how=locate_method_dict["css"]
+        # elif old_how=='xpath':
+        #     new_how=locate_method_dict["xpath"]
         print obj_name,new_how,what
         #调用定位元素方法，并传递给该方法一个定位方式，定位值，元素名称，用户名，密码，弹出框内容
         self.locateElement(br,new_how,what,obj_name,username,password,alertmessage)
@@ -54,7 +56,10 @@ class LocateLoginObject():
     def locateElement(self,browser,how,what,obj_name,username,password,alertmessage):
         br=browser
         object_name=obj_name
-        located_element=br.find_element(by=how,value=what)
+        try:
+            located_element=br.find_element(by=how,value=what)
+        except:
+            print (u"元素: %s 未找到" %obj_name)
         #调用操作元素的方法
         OperateLoginElement.OperateElement().operateElement(br,object_name,located_element,username,password,alertmessage)
 

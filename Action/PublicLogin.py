@@ -1,5 +1,5 @@
 # encoding:utf-8
-from test_login import Login
+from login import Login
 from object import LocateLoginObject
 import Browser,time
 from selenium import webdriver

@@ -90,7 +90,7 @@ class Login(unittest.TestCase):
         #为弹出框增加断言
         print (u"弹出框内容为：%s" %self.browser.switch_to_alert().text)
         print (u"预期弹出框内容为：%s" %alertmessage)
-        self.assertEqual(alertmessage,self.browser.switch_to_alert().text,msg='not equal')
+        self.assertEqual(alertmessage,self.browser.switch_to_alert().text,msg='the alert message is not equal with expection')
         #捕获弹出框异常并打印到测试报告中
         try:
             self.browser.switch_to_alert().accept()

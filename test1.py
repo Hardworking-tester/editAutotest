@@ -27,7 +27,7 @@ class TT1(unittest.TestCase):
         time.sleep(4)
         br.switch_to.window(br.window_handles[1])
         time.sleep(4)
-        br.find_element_by_link_text(u'我是供应商').click()
+        br.find_element_by_link_text('我是供应商').click()
         time.sleep(4)
         br.find_element_by_link_text(u'产品管理').click()
         br.find_element_by_link_text(u'发布信息').click()

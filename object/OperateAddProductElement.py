@@ -78,4 +78,9 @@ class OperateElement():
             located_element.clear()
             located_element.send_keys(data_list[14])
 
+        elif operate_method=='sendkey' and object_name==u'验证码':
+            located_element.clear()
+            located_element.send_keys(int(data_list[15]))
+
+
 
